@@ -3,7 +3,6 @@ def Facto(num) :
         return (num * Facto(num-1))
     else :
         return 1
-
-
-print(Facto(20)) 
-
+while True:
+    num=int(input())
+    print(Facto(num))
