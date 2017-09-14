@@ -26,23 +26,46 @@ def writeScoreDB(scdb):
     pickle.dump(scdb, fH)
     fH.close()
 
+#각 명령어마다 예외처리 넣어줌.
 def doScoreDB(scdb):
 	while(True):
 		inputstr = (input("Score DB > "))
 		if inputstr == "": continue
 		parse = inputstr.split(" ")
 		if parse[0] == 'add':
-			record = {'Name':parse[1], 'Age':parse[2], 'Score':parse[3]}
-			scdb += [record]
+			if not parse[1].isalpha():
+				print("Error! 정확한 값을 입력해 주세요")
+				continue
+			elif len(parse[2]) < 1 or len(parse[3]) < 1:
+				print("정확한 값을 입력해 주세요")
+				continue
+			else:
+				record = {'Name':parse[1], 'Age':parse[2], 'Score':parse[3]}
+				scdb += [record]
+		#'del'처리 수정o
 		elif parse[0] == 'del':
-			for p in scdb:
+			a = scdb[:]
+			for p in a:
 				if p['Name'] == parse[1]:
 					scdb.remove(p)
-					break
 		elif parse[0] == 'find':
-			findname(scdb, parse[1])
+			if not parse[1].isalpha():
+				print("정확한 이름을 입력해 주세요")
+				continue
+			else:
+				findname(scdb, parse[1])
 		elif parse[0] == 'inc':
-			incscore(scdb,parse[1],parse[2])
+			if not parse[1].isalpha():
+				print("정확한 이름을 입력해 주세요")
+				continue
+			elif len(parse[2]) <1:
+				print("정확한 숫자를 입력해 주세요")
+				continue
+			elif not parse[2].isdigit():
+				print("문자가 아닌 숫자를 입력해 주세요")
+				continue
+			else:
+				incscore(scdb,parse[1],parse[2])
 		elif parse[0] == 'show':
 			sortKey ='Name' if len(parse) == 1 else parse[1]
 			showScoreDB(scdb, sortKey)
