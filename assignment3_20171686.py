@@ -44,10 +44,14 @@ def doScoreDB(scdb):
 				scdb += [record]
 		#'del'처리 수정o
 		elif parse[0] == 'del':
-			a = scdb[:]
-			for p in a:
-				if p['Name'] == parse[1]:
-					scdb.remove(p)
+			if len(parse[1] <1):
+				print("이름을 입력해 주세요")
+				continue
+			else:
+				a = scdb[:]
+				for p in a:
+					if p['Name'] == parse[1]:
+						scdb.remove(p)
 		elif parse[0] == 'find':
 			if not parse[1].isalpha():
 				print("정확한 이름을 입력해 주세요")
@@ -63,6 +67,9 @@ def doScoreDB(scdb):
 				continue
 			elif not parse[2].isdigit():
 				print("문자가 아닌 숫자를 입력해 주세요")
+				continue
+			elif len(parse[1] <1) or len(parse[2] <1):
+				print("이름 또는 점수가 입력되지 않았습니다.")
 				continue
 			else:
 				incscore(scdb,parse[1],parse[2])
