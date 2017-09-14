@@ -57,8 +57,9 @@ def doScoreDB(scdb):
                 print("Invalid command: " + parse[0])
         except (IndexError, ValueError):
             print("Parameter error. EX : add Lee 22 100")
-        #except:
-        #    print("\nError! Please check your command")
+            continue
+        except:
+            print("\nError! Please check your command")
 
 
 
@@ -84,14 +85,11 @@ def showScoreDB(scdb, keyname):
 
 def findDB(scdb, name):
     find_complete = False
-    print(scdb)
-    for p in scdb:
-        print(p)
 
     for p in scdb:
         if p['Name'] == name:
             for attr in p:
-                print(attr + "=" + p[attr], end=' ')
+                print(attr + "=" + str(p[attr]), end=' ')
             find_complete = True
             print()
 
