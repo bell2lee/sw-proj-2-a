@@ -132,36 +132,3 @@ doScoreDB(scoredb)
 writeScoreDB(scoredb)
 
 
-# write the data into person db
-def writeScoreDB(scdb):
-    fH = open(dbfilename, 'w')
-    for p in scdb:
-        pinfo = []
-        for attr in p:
-            pinfo += [attr + ":" + p[attr]]
-        print(pinfo)
-        str = ','.join(pinfo)
-        fH.write(str + '\n')
-    fH.close()
-
-
-def doScoreDB(scdb):
-    while (True):
-        dat = (input("Enter a new person: "))
-        if dat == "": break
-        person = dat.split(",")
-        record = {'Name': person[0], 'Age': person[1], 'Height': person[2]}
-        scdb += [record]
-        cont = input("Continue (Y/n)")
-        if cont != "Y": break
-    print(scdb)
-    for p in scdb:
-        for attr in p:
-            #		print(p['Name'])
-            print(attr + " : " + p[attr])
-        print()
-
-
-scoredb = readScoreDB()
-doScoreDB(scoredb)
-writeScoreDB(scoredb)
