@@ -13,15 +13,21 @@ c = combination(n) / (combination(m)*combination(n-m))
 print(n,"C",m, "=", c)
 '''
 
-#재귀함수로 짠 코드
-def nCr(n,k):
-    if k ==0:
+# 재귀함수로 짠 코드
+def nCr(n, k):
+    if k == 0 or n == k:
         return 1
-    elif n<k: # k가 n보다 커지면 정의할 수 없으므로 0으로 리턴되게 설정 함.
+    elif n < k:  # k가 n보다 커지면 정의할 수 없으므로 0으로 리턴되게 설정 함.
         return 0
     else:
-        return nCr(n-1, k-1) + nCr(n-1,k)
-
-n = int(input("n의 값을 입력해 주세요:"))
-k = int(input("k의 값을 입력해 주세요:"))
-print(nCr(n,k))
+        return nCr(n - 1, k - 1) + nCr(n - 1, k)
+    
+n = 0
+while (n >= 0):
+    n = int(input("n의 값을 입력해 주세요:"))
+    if n == -1:
+        print("양수를 입력해 주세요.")
+        break
+    k = int(input("k의 값을 입력해 주세요:"))
+    
+    print(nCr(n, k))
