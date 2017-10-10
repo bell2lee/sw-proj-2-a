@@ -8,7 +8,7 @@ def fibo(num):
         return fibo(num-1) + fibo(num-2)
 
 
-#점화식을 이용한 방법
+#반복
 def iterfibo(num):
     if num == 0:
         return 0
