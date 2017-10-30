@@ -160,7 +160,7 @@ class ScoreDB(QWidget):
         score = self.AmountEdit.text()
         for i in self.scoredb:
             if i['Name'] == name:
-                i['Score'] = str(int(i['Score']) + int(score))
+                i['Score'] = (int(i['Score']) + int(score))
         self.showScoreDB()
 
     def do_show(self):
